@@ -20,4 +20,16 @@ public class SensorService {
     public void save(Sensor sensor) {
         sensorRepository.save(sensor);
     }
+
+    public Sensor findByName(String sensorName) {
+        return sensorRepository.findByName(sensorName);
+    }
+
+    public String findSensorNameById(int id) {
+        return sensorRepository.findSensorNameById(id);
+    }
+
+    public Sensor findById(int id){
+        return sensorRepository.findById(id);
+    }
 }

@@ -1,46 +1,14 @@
 package ru.chervenko.SensorRESTApp.dto;
 
-import jakarta.persistence.*;
 import ru.chervenko.SensorRESTApp.model.Sensor;
+import ru.chervenko.SensorRESTApp.repositories.SensorRepository;
+
+import java.util.Optional;
 
 public class MeasuresDTO {
-
-    private int id;
-
-    private int sensorId;
-
-    private String sensorName;
-
     private float value;
-
     private boolean raining;
-
     private Sensor sensor;
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getSensorId() {
-        return sensorId;
-    }
-
-    public void setSensorId(int sensorId) {
-        this.sensorId = sensorId;
-    }
-
-    public String getSensorName() {
-        return sensorName;
-    }
-
-    public void setSensorName(String sensorName) {
-        this.sensorName = sensorName;
-    }
 
     public float getValue() {
         return value;
@@ -58,6 +26,7 @@ public class MeasuresDTO {
         this.raining = raining;
     }
 
+
     public Sensor getSensor() {
         return sensor;
     }
@@ -65,4 +34,5 @@ public class MeasuresDTO {
     public void setSensor(Sensor sensor) {
         this.sensor = sensor;
     }
+
 }

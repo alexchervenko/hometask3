@@ -42,11 +42,12 @@ public class Sensor {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Sensor{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public List<Measures> getMeasuresList() {
+        return measuresList;
     }
+
+    public void setMeasuresList(List<Measures> measuresList) {
+        this.measuresList = measuresList;
+    }
+
 }

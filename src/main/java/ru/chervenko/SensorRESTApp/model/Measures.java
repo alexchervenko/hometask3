@@ -11,30 +11,29 @@ public class Measures {
     @Column(name = "id")
     private int id;
 
-//    @Column(name = "sensor_id")
-    private int sensorId;
-
-    @Column(name = "sensor_name")
-    private String sensorName;
-
     @Column(name = "value")
     private float value;
 
     @Column(name = "raining")
     private boolean raining;
 
+    @Column(name = "sensor_name")
+    private String sensorName;
+
     @ManyToOne
     @JoinColumn(name = "sensor_id", referencedColumnName = "id")
     private Sensor sensor;
 
+
     public Measures() {
     }
 
-    public Measures(String sensorName, float value, boolean raining, Sensor sensor) {
-        this.sensorName = sensorName;
+    public Measures(float value, boolean raining, Sensor sensor) {
         this.value = value;
         this.raining = raining;
         this.sensor = sensor;
+        this.sensorName = sensor.getName();
+
     }
 
     public int getId() {
@@ -43,22 +42,6 @@ public class Measures {
 
     public void setId(int id) {
         this.id = id;
-    }
-//
-//    public int getSensorId() {
-//        return sensorId;
-//    }
-//
-//    public void setSensorId(int sensorId) {
-//        this.sensorId = sensorId;
-//    }
-
-    public String getSensorName() {
-        return sensorName;
-    }
-
-    public void setSensorName(String sensorName) {
-        this.sensorName = sensorName;
     }
 
     public float getValue() {
@@ -85,12 +68,18 @@ public class Measures {
         this.sensor = sensor;
     }
 
+    public String getSensorName() {
+        return sensorName;
+    }
+
+    public void setSensorName(String sensorName) {
+        this.sensorName = sensorName;
+    }
+
     @Override
     public String toString() {
         return "Measures{" +
                 "id=" + id +
-                ", sensorId=" + sensorId +
-                ", sensorName='" + sensorName + '\'' +
                 ", value=" + value +
                 ", raining=" + raining +
                 ", sensor=" + sensor +

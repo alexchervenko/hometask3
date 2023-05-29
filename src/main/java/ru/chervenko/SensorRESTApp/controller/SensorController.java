@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.chervenko.SensorRESTApp.dto.SensorDTO;
 import ru.chervenko.SensorRESTApp.model.Sensor;
 import ru.chervenko.SensorRESTApp.services.SensorService;
+import ru.chervenko.SensorRESTApp.util.BindingResultMethod;
 import ru.chervenko.SensorRESTApp.util.SensorNotCreatedException;
 
 import java.util.List;
@@ -33,14 +34,8 @@ public class SensorController {
     public ResponseEntity<HttpStatus> create(@RequestBody @Valid SensorDTO sensorDTO,
                                             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            StringBuilder errorMessage = new StringBuilder();
-            List<FieldError> errors = bindingResult.getFieldErrors();
-            for (FieldError error :  errors) {
-                errorMessage.append(error.getField())
-                        .append(" = ").append(error.getDefaultMessage())
-                        .append(";");
-            }
-            throw new SensorNotCreatedException(errorMessage.toString());
+            String errorMessage = BindingResultMethod.buildErrorsStringForBindindResult(bindingResult);
+            throw new SensorNotCreatedException(errorMessage);
         }
         sensorService.save(convertToSensor(sensorDTO));
         return ResponseEntity.ok(HttpStatus.OK);
