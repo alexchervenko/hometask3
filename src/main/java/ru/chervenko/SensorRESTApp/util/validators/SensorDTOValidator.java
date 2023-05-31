@@ -5,15 +5,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import ru.chervenko.SensorRESTApp.dto.SensorDTO;
-import ru.chervenko.SensorRESTApp.model.Sensor;
 import ru.chervenko.SensorRESTApp.services.SensorService;
 
 @Component
-public class SensorValidator implements Validator {
+public class SensorDTOValidator implements Validator {
     private final SensorService sensorService;
 
     @Autowired
-    public SensorValidator(SensorService sensorService) {
+    public SensorDTOValidator(SensorService sensorService) {
         this.sensorService = sensorService;
     }
 
@@ -24,9 +23,9 @@ public class SensorValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        Sensor sensor = (Sensor) target;
+        SensorDTO sensorDTO = (SensorDTO) target;
 
-        if(sensorService.findByName(sensor.getName()).isPresent()){
+        if(sensorService.findByName(sensorDTO.getName()).isPresent()){
             errors.rejectValue("name", "", "This name is already exist");
         }
 
