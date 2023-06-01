@@ -1,4 +1,4 @@
-package ru.chervenko.SensorRESTApp.util;
+package ru.chervenko.SensorRESTApp.util.validators;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

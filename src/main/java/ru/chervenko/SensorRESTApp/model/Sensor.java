@@ -1,5 +1,6 @@
 package ru.chervenko.SensorRESTApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class Sensor {
     private String name;
 
     @OneToMany(mappedBy = "sensor")
+    @JsonIgnore
     private List<Measures> measuresList;
 
     public Sensor() {

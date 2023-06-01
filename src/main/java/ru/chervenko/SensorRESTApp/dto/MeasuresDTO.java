@@ -1,13 +1,22 @@
 package ru.chervenko.SensorRESTApp.dto;
 
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.beans.factory.annotation.Value;
 import ru.chervenko.SensorRESTApp.model.Sensor;
-import ru.chervenko.SensorRESTApp.repositories.SensorRepository;
 
-import java.util.Optional;
 
 public class MeasuresDTO {
+
+    @DecimalMin("-100")
+    @DecimalMax("100")
     private float value;
+
+    @NotNull
     private boolean raining;
+
+    @NotNull
     private Sensor sensor;
 
     public float getValue() {

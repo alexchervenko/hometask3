@@ -2,6 +2,8 @@ package ru.chervenko.SensorRESTApp.model;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "measures")
 public class Measures {
@@ -20,6 +22,10 @@ public class Measures {
     @Column(name = "sensor_name")
     private String sensorName;
 
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
     @ManyToOne
     @JoinColumn(name = "sensor_id", referencedColumnName = "id")
     private Sensor sensor;
@@ -33,7 +39,6 @@ public class Measures {
         this.raining = raining;
         this.sensor = sensor;
         this.sensorName = sensor.getName();
-
     }
 
     public int getId() {
@@ -76,12 +81,22 @@ public class Measures {
         this.sensorName = sensorName;
     }
 
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
     @Override
     public String toString() {
         return "Measures{" +
                 "id=" + id +
                 ", value=" + value +
                 ", raining=" + raining +
+                ", sensorName='" + sensorName + '\'' +
+                ", createdAt=" + createdAt +
                 ", sensor=" + sensor +
                 '}';
     }
